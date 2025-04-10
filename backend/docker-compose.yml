@@ -1,0 +1,52 @@
+services:
+  nestjs-database:
+    container_name: nestjs-database
+    image: postgres:16.2-alpine3.19
+    volumes:
+      - ./database/db-data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-default}
+      PGDATA: /var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 2s
+      timeout: 1s
+      retries: 20
+    restart: always
+
+  adminer:
+    container_name: adminer
+    image: adminer
+    restart: always
+    ports:
+      - '8080:8080'
+    environment:
+      ADMINER_DEFAULT_SERVER: nestjs-database
+
+  nestjs-app:
+    container_name: nestjs-app
+    build:
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./src:/usr/src/app/src:delegated
+      - ./libs:/usr/src/app/libs:delegated
+      - ./package.json:/usr/src/app/package.json
+      - ./tsconfig.json:/usr/src/app/tsconfig.json
+      - ./tsconfig.build.json:/usr/src/app/tsconfig.build.json
+    environment:
+      PGSTRING: postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@nestjs-database:5432/${POSTGRES_DB:-default}
+      POSTGRES_HOST: nestjs-database
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: default
+    ports:
+      - '3000:3000'
+    depends_on:
+      nestjs-database:
+        condition: service_healthy

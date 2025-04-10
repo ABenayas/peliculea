@@ -1,0 +1,15 @@
+{
+    "type": "postgres",
+    "host": "nestjs-database",
+    "port": 5432,
+    "username": "postgres",
+    "password": "postgres",
+    "database": "default",
+    "entities": ["dist/**/*.entity.js"], 
+    "synchronize": false,
+    "mmigrationsTableName": "migrations",
+    "migrations": ["dist/migrations/*.js"],
+    "cli": {
+      "migrationsDir": "src/migrations"
+    }
+  }
