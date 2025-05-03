@@ -2,6 +2,7 @@ import { Controller, Post, Body, Get, Param, Delete, Put, Patch } from '@nestjs/
 import { UserMoviesService } from './user-movies.service';
 import { UsersService } from '../users/users.service';
 import { UserMoviesDto } from './dto/user-movies.dto';
+import { UpdateUserMoviesDto } from './dto/update-user-movies.dto';
 
 @Controller('user-movies')
 export class UserMoviesController {
@@ -40,10 +41,10 @@ export class UserMoviesController {
     return this.userMoviesService.removeMovieFromList(id);
   }
 
-  @Patch(':id') // Es para modificar los campos de rating y notes.
+  @Patch(':id') // Usamos el nuevo DTO parcial.
   update(
     @Param('id') id: string,
-    @Body() updateDto: UserMoviesDto,
+    @Body() updateDto: UpdateUserMoviesDto,
   ) {
     return this.userMoviesService.update(+id, updateDto);
   }
