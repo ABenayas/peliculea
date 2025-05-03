@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm'; // En los módulos debemos importar el TypeOrm y la entidad.
 import { User } from './user.entity';
-import { UsersService } from './users.service'; // Aquí importas el servicio.
-import { UsersController } from './users.controller'; // Aquí importas el servicio.
+import { UsersService } from './users.service'; // Aquí se importa el servicio.
+import { UsersController } from './users.controller';
 
 @Module({
   imports: [
@@ -10,7 +10,7 @@ import { UsersController } from './users.controller'; // Aquí importas el servi
     TypeOrmModule.forFeature([User]), // Esto le dice a TypeORM que el módulo actual está relacionado con la entidad User. Si hay más, se añaden más en el array.
   ],
   controllers: [UsersController],
-  providers: [UsersService], // Aquí registras el servicio en el módulo.
+  providers: [UsersService], // Aquí se registra el servicio en el módulo.
   exports: [UsersService],
 })
 export class UsersModule {} // Se exporta la clase UsersModule para que pueda ser usada en otras partes de la aplicación.
