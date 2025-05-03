@@ -6,7 +6,7 @@ import {
   IsNotEmpty,
  } from 'class-validator';
 
-export class UserMoviesDto { // Con esto se evita que lleguen datos mal formateados desde el frontend o Postman
+export class UserMoviesDto { // Con esto se evita que lleguen datos mal formateados desde el frontend o Postman. Sirve para insertar películas.
   @IsInt()
   tmdbId: number;
 
