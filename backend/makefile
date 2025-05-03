@@ -28,3 +28,15 @@ start:
 stop:
 	@echo "Stopping the Docker containers"
 	@$(DOCKER_COMPOSE_COMMAND) down
+
+migrate-generate:
+	@echo "Generating migration..."
+	@npm run migration:generate
+
+migrate:
+	@echo "Running migration..."
+	@npm run migration:run
+
+migrate-revert:
+	@echo "Reverting last migration..."
+	@npm run migration:revert

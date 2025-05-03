@@ -1,10 +1,10 @@
 services:
-  nestjs-database:
+  nestjs-database: # Este servicio levanta la base de datos en postgre, no uso .env en enviroment, introduzco las credenciales directamente.
     container_name: nestjs-database
     image: postgres:16.2-alpine3.19
     volumes:
       - ./database/db-data:/var/lib/postgresql/data
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      # - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql // Lo comento para que no ejecute el init.sql ya que lo borré.
     ports:
       - '5432:5432'
     environment:
@@ -19,7 +19,7 @@ services:
       retries: 20
     restart: always
 
-  adminer:
+  adminer: # Este servicio levanta el adminer para comprobar visualmente la base de datos, con las credenciales de arriba.
     container_name: adminer
     image: adminer
     restart: always
@@ -28,7 +28,7 @@ services:
     environment:
       ADMINER_DEFAULT_SERVER: nestjs-database
 
-  nestjs-app:
+  nestjs-app: # Levanta el servicio en NestJS.
     container_name: nestjs-app
     build:
       dockerfile: ./Dockerfile
@@ -45,6 +45,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: default
+      TMDB_API_TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxYWM1YzViMjcyZWYyMmI5YjIzOTFjY2EzNmZiNzlhMyIsIm5iZiI6MTc0NDE4MTI4Mi4wNDE5OTk4LCJzdWIiOiI2N2Y2MTgyMjdiNDNiZGNlMjBhZGI0NWMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.sHij8YVUfLeAj8y4Di651Z1u0gW_VxJrzmgdyvz-nts
     ports:
       - '3000:3000'
     depends_on:
