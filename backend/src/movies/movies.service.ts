@@ -15,8 +15,8 @@ export class MoviesService {
         },
       });
 
-      // Mapeamos solo los campos que queremos devolver
-      return response.data.results.map((movie: any) => ({ // La API devuelve una lista gigante de pelis dentro de response.data.results. Con .map() recorre cada peli y crea un nuevo objeto con solo los campos que me interesan.
+      // Mapeamos solo los campos que queremos devolver.
+      return response.data.results.map((movie: any) => ({ // La API devuelve una lista gigante de pelis dentro de response.data.results. Con .map() se recorre cada peli y crea un nuevo objeto con solo los campos que me interesan.
         id: movie.id, // De cada peli que me devuelve en results, crea un nuevo objeto con estas propiedades, ejemplo de id: el valor que tiene movie.id. Es acceder al campo id dentro del objeto movie que viene del JSON. El punto (.) es la forma de entrar a una propiedad dentro de un objeto.
         title: movie.title,
         overview: movie.overview,
