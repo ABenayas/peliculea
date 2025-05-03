@@ -35,7 +35,7 @@ export class UsersService {
   // Método para obtener un usuario por su ID.
   async findUserById(id: number): Promise<User | null> {
     const user = await this.usersRepository.findOne({ where: { id } }); // Busca un usuario por su ID.
-    return user || null; // Devuelve el usuario encontrado o null si no existe.
+    return user || null; // Devuelve el usuario encontrado o null, si no existe.
   }
 
   // Método que uso para el login en ./auth/auth.service.ts
@@ -63,6 +63,6 @@ export class UsersService {
   // Método para eliminar un usuario por su ID.
   async deleteUser(id: number): Promise<boolean> {
     const result = await this.usersRepository.delete(id); // Elimina el usuario por su ID.
-    return result.affected ? result.affected > 0 : false; // Verifica si `affected` es válido antes de comparar.
+    return result.affected ? result.affected > 0 : false; // Verifica si "affected" es válido antes de comparar.
   }
 }
