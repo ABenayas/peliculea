@@ -5,6 +5,7 @@ import { UserMovie } from './user-movie.entity';
 import { Movie } from '../movies/movie.entity';
 import { User } from '../users/user.entity';
 import { UserMoviesDto } from './dto/user-movies.dto';
+import { UpdateUserMoviesDto } from './dto/update-user-movies.dto';
 
 @Injectable()
 export class UserMoviesService {
@@ -70,7 +71,7 @@ export class UserMoviesService {
     await this.userMovieRepo.update(id, { status });
   }
 
-  async update(id: number, dto: Partial<UserMoviesDto>): Promise<UserMovie> { // Para el método para PATCH
+  async update(id: number, dto: UpdateUserMoviesDto): Promise<UserMovie> { // Para el método PATCH y el DTO de modificación de rating y notes.
     const userMovie = await this.userMovieRepo.findOneBy({ id });
     if (!userMovie) {
       throw new NotFoundException('Entrada no encontrada');
