@@ -20,11 +20,11 @@ export class UserMoviesDto { // Con esto se evita que lleguen datos mal formatea
 
   @IsOptional()
   @IsString()
-  poster_path?: string;
+  posterPath?: string;
 
   @IsOptional()
   @IsString()
-  release_date?: string;
+  releaseDate?: string;
 
   @IsOptional()
   @IsIn(['vista', 'pendiente'])

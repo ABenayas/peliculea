@@ -20,7 +20,7 @@ export class UserMoviesService {
   // Añade una película a la lista del usuario. Si la película no existe en nuestra base, la creamos.
   async addMovieToList(
     user: User,
-    movieData: UserMoviesDto, // Este apartado, el movieData, se cambia al crear el DTO, está llamando a todo lo que hay en el DTO, antes lo tenía así: {tmdbId: number; title: string; poster_path?: string; release_date?: string; overview?: string; status?: 'vista' | 'pendiente'; rating?: number;?: string;}
+    movieData: UserMoviesDto, // Este apartado, el movieData, se cambia al crear el DTO, está llamando a todo lo que hay en el DTO, antes lo tenía así: {tmdbId: number; title: string; posterPath?: string; releaseDate?: string; overview?: string; status?: 'vista' | 'pendiente'; rating?: number;?: string;}
   ): Promise<UserMovie> {
     // 1. Buscar si ya existe una película con ese tmdbId.
     let movie = await this.movieRepo.findOne({
@@ -33,8 +33,8 @@ export class UserMoviesService {
         tmdbId: movieData.tmdbId,
         title: movieData.title,
         overview: movieData.overview,
-        posterPath: movieData.poster_path, // camelCase porque así se indica en la entidad.
-        releaseDate: movieData.release_date,
+        posterPath: movieData.posterPath, // camelCase porque así se indica en la entidad.
+        releaseDate: movieData.releaseDate,
       });
       await this.movieRepo.save(movie);
     }

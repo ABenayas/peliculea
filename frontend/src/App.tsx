@@ -1,0 +1,50 @@
+import { Routes, Route } from 'react-router-dom';
+import MovieDetails from './pages/MovieDetails';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Movies from './pages/Movies';
+import UserMovies from './pages/UserMovies';
+import PrivateRoute from './components/PrivateRoute';
+
+function App() {
+  return (
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/movies"
+        element={
+          <PrivateRoute>
+            <Movies />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/user-movies/:status"
+        element={
+          <PrivateRoute>
+            <UserMovies />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/pelicula/:id"
+        element={
+          <PrivateRoute>
+            <MovieDetails />
+          </PrivateRoute>
+        }
+      />
+      <Route path="/login" element={<Login />} />
+    </Routes>
+  );
+}
+
+export default App;
+

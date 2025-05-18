@@ -19,7 +19,7 @@ import {
     @ManyToOne(() => Movie, (movie) => movie.userMovies, { eager: true })
     movie: Movie;
   
-    @Column({ default: 'pending' }) // 'pending' | 'watched'
+    @Column({ default: 'pendiente' }) // 'pendiente' | 'vista'
     status: string;
   
     @Column({ type: 'int', nullable: true }) // nullable es para que sean campos opcionables.

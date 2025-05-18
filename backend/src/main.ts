@@ -11,6 +11,9 @@ async function bootstrap() {
      whitelist: true, // Elimina del body cualquier propiedad que no esté en el DTO.
       forbidNonWhitelisted: true, // Lanza un error si llega una propiedad que no está permitida.
      }));
+
+  app.enableCors(); // Esta línea la dejamos así durante desarrollo, pero más adelante, se pueden restringir dominios en producción.
+  
   await app.listen(process.env.PORT ?? 3000); // Arranca, usa la variable de entorno o puerto 3000 por defecto.
 }
 bootstrap();
