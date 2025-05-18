@@ -13,8 +13,8 @@ export const AppDataSource = new DataSource({ // Esto es el motor que TypeORM ne
   username: process.env.POSTGRES_USER || 'postgres',
   password: process.env.POSTGRES_PASSWORD || 'postgres',
   database: process.env.POSTGRES_DB || 'default',
-  entities: ['dist/**/*.entity.js'], // Para usar desde dist
-  migrations: ['dist/migrations/*.js'], // Para usar desde dist
+  entities: ['dist/**/*.entity.js'], // Para usar desde dist.
+  migrations: ['dist/migrations/*.js'], // Para usar desde dist.
   synchronize: false, // Siempre en false para migraciones.
 });
 
