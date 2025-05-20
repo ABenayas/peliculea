@@ -113,16 +113,16 @@ function UserMovies() {
               {movie.status === 'pendiente' && (
                 <button
                   onClick={() => updateStatus(movie.id, 'vista')}
-                  className="bg-green-500 text-white px-2 py-1 rounded text-sm"
+                  className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded shadow"
                 >
-                  ✅ Marcar como vista
+                  ✅ Añadir a vistas
                 </button>
               )}
               <button
                 onClick={() => deleteMovie(movie.id)}
-                className="bg-red-500 text-white px-2 py-1 rounded text-sm"
+                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded shadow"
               >
-                ❌ Borrar
+                ❌ Eliminar
               </button>
             </div>
           </li>

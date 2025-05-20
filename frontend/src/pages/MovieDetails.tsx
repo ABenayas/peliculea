@@ -31,7 +31,7 @@ function MovieDetails() {
         />
         <div>
           <h1 className="text-3xl font-bold mb-2">{movie.title}</h1>
-          <p className="text-sm text-gray-400 mb-2">🎬 {movie.releaseDate}</p>
+          <p className="text-sm text-gray-400 mb-2">{movie.releaseDate}</p>
           <p className="mb-4">{movie.overview}</p>
           <p><strong>🕒 Duración:</strong> {movie.runtime} min</p>
           <p><strong>🎬 Director:</strong> {movie.director}</p>
