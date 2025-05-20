@@ -12,11 +12,11 @@ import { UserMovie } from './user-movies/user-movie.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'nestjs-database', // Tiene que coincidir con el servicio de docker-compose, el host si uso Docker, si no, localhost.
-      port: 5432,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'default',
+      host: process.env.POSTGRES_HOST, // Tiene que coincidir con el servicio de docker-compose, el host si uso Docker, si no, localhost.
+      port: parseInt(process.env.POSTGRES_PORT || '5432', 10),
+      username: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_DB,
       entities: [User, Movie, UserMovie], // Aquí metemos todas las entidades que tenemos. Aunque, parece que se puede hacer de manera automática así: 'dist/**/*.entity{.ts,.js}', si no, sería indicando las entidades una a una [User,...], e importándolas arriba.
       synchronize: false, // Aquí está la opción de no sincronizar automáticamente, false. Al principio lo dejo true.
       retryDelay: 3000, // Estas 2 líneas son para darle tiempo a que la base de datos se caliente, estos son los segundos, y abajo los intentos de conexión.

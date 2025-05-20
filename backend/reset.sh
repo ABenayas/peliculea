@@ -1,36 +1,38 @@
 #!/bin/bash
 set -e
 
-echo "🧹 Borrando migraciones antiguas..."
+echo "🗑️ Borrando dist/ y migraciones antiguas..."
 rm -rf dist/
 rm -rf src/migrations/
 mkdir -p src/migrations
 
+echo "📦 Compilando todo el proyecto con TSC..."
+npm run build
+
 echo "🛑 Parando contenedores..."
-make stop
+docker compose down
 
 echo "🗑️ Borrando volumen de la base de datos..."
-sudo rm -rf database/db-data
+sudo chown -R $USER:$USER database/db-data
+rm -rf database/db-data # Da problemas sin el sudo, por eso se indica la línea anterior, así se ahorra el meter pass.
 
-echo "🔧 Reconstruyendo imagen Docker..."
-docker compose build
+echo "🛠️ Levantando contenedores..."
+docker compose up -d --build
 
-echo "🚀 Arrancando contenedores frescos..."
-make start &
+echo "⏳ Esperando a que la base de datos esté disponible..."
 sleep 7
 
-echo "📦 Compilando proyecto..."
-npm run build
-npm run build:data-source
-
-echo "🛠️ Generando nueva migración..."
-npx typeorm migration:generate src/migrations/InitialMigration -d dist/src/data-source.js
+echo "🛠️ Generando migración dentro del contenedor..."
+docker exec -it nestjs-app npx typeorm migration:generate src/migrations/InitialMigration -d dist/data-source.js
 
 echo "📦 Compilando migraciones..."
 npx tsc src/migrations/*.ts --outDir dist/migrations
 
-echo "💾 Ejecutando migración..."
-npx typeorm migration:run -d dist/src/data-source.js
+echo "💾 Ejecutando migración dentro del contenedor..."
+docker exec -i nestjs-app npx typeorm migration:run -d dist/data-source.js
 
-echo "✅ Todo listo. Abre Adminer y goza: http://localhost:8080"
+echo "✅ Backend operativo. Adminer en: http://localhost:8080"
+
+echo "✅ Todo listo. Iniciando Frontend (modo desarrollo)..."
+(cd ../frontend && npm run dev > ../frontend/dev.log 2>&1 &)
 
