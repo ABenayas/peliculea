@@ -47,7 +47,12 @@ export class MoviesService {
   
       const movie = movieResponse.data;
       const crew = creditsResponse.data.crew;
+      const cast = creditsResponse.data.cast || [];
+
       const director = crew.find((person: any) => person.job === 'Director');
+      const topActors = cast.slice(0, 5).map((actor: any) => actor.name); // Los primeros 5.
+      const country = movie.production_countries?.[0]?.name || 'Desconocido';
+      const genres = movie.genres?.map((g: any) => g.name).join(', ') || 'Sin género';
   
       // Devolvemos solo los campos que nos interesan.
       return {
@@ -58,6 +63,9 @@ export class MoviesService {
         releaseDate: movie.release_date || '',
         runtime: movie.runtime,
         director: director ? director.name : 'Desconocido',
+        actors: topActors,
+        country,
+        genres,
       };
     } catch (error) {
       console.error('Error al obtener detalles de la película:', error.message);

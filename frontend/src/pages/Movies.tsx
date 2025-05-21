@@ -63,8 +63,13 @@ function Movies() {
         overview: movie.overview,
         status,
       });
-      toast.success(`Añadida como ${status}`);
-    } catch (err) {
+       toast.success(`Añadida como ${status}`);
+    } catch (err: any) {
+      if (err.response?.status === 400) {
+        toast.warning('Ya tienes esta película en alguna lista');
+      } else {
+        toast.error('❌ Error al añadir la película');
+      }
       console.error('❌ Error al añadir película:', err);
     }
   };
