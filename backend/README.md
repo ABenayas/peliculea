@@ -10,7 +10,7 @@ Este es el backend del proyecto Peliculea, una app de gestión de películas. Es
 
 - Docker + Docker Compose
 - Node.js >= 18
-- Bash (Linux/Mac) o WSL (Windows)
+- WSL (Windows)
 
 ### 2. Configura tu entorno
 
@@ -33,7 +33,7 @@ Este script:
 - Genera y ejecuta la migración inicial
 - Deja el backend funcionando en `http://localhost:3000`
 - Adminer disponible en `http://localhost:8080`
-- (Opcional) También puede iniciar el frontend si está configurado
+- Inicia el frontend
 
 ---
 

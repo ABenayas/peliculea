@@ -40,9 +40,9 @@ function Movies() {
 
   useEffect(() => {
     const q = searchParams.get('q') || '';
-    setSearchTerm(q); // Mantiene el input sincronizado con la URL
-    if (q) fetchMovies(q); // Opcional: vuelve a lanzar la búsqueda al hacer "atrás"
-  }, [searchParams]); // Se ejecuta cada vez que cambia la URL
+    setSearchTerm(q); // Mantiene el input sincronizado con la URL.
+    if (q) fetchMovies(q); // Vuelve a lanzar la búsqueda al atrás, ya que si no, queda raro.
+  }, [searchParams]); // Se ejecuta cada vez que cambia la URL.
 
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -90,7 +90,7 @@ function Movies() {
     </Link>
 
     <div className="relative z-10 w-full max-w-7xl mx-auto">
-      <h1 className="text-3xl font-bold text-center mb-6">Buscar películas</h1>
+      <h1 className="text-3xl font-bold text-center mb-6">Buscador de películas</h1>
 
       <div className="flex flex-col items-center w-full mb-4">
         <input
@@ -102,13 +102,14 @@ function Movies() {
           className="text-black border-gray-500 border p-2 rounded w-full max-w-xl mb-2"
         />
 
+        <h1 className="text-2xl font-bold text-center mb-6">Elige la lista:</h1>
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value as 'pendiente' | 'vista')}
           className="bg-gray-600 text-white border border-gray-700 rounded px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-white"
         >
-          <option value="pendiente">Añadir como pendiente</option>
-          <option value="vista">Añadir como vista</option>
+          <option value="pendiente">Pendientes</option>
+          <option value="vista">Vistas</option>
         </select>
       </div>
 

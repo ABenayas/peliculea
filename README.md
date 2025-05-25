@@ -57,7 +57,7 @@ Este comando:
 - Genera y aplica migraciones
 - Arranca el backend en `http://localhost:3000`
 - Arranca Adminer en `http://localhost:8080`
-- (Opcional) Lanza también el frontend en `http://localhost:5173` si está configurado
+- Lanza también el frontend en `http://localhost:5173`
 
 ---
 
@@ -66,6 +66,7 @@ Este comando:
 - Backend: [`backend/`](./backend/)
 - Frontend: [`frontend/`](./frontend/)
 - Adminer (DB): [http://localhost:8080](http://localhost:8080)
+- Repositorio en GitHub (public):https://github.com/ABenayas/peliculea.git
 
 ---
 

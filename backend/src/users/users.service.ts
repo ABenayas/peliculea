@@ -18,6 +18,15 @@ export class UsersService {
     name: string;
     password: string;
   }): Promise<User> {
+
+    const existingUser = await this.usersRepository.findOne({ // Creamos la constante a través del método findOne filtrado por mail.
+      where: { email: body.email },
+    });
+
+    if (existingUser) { // Se captura bien el error que salta cuando ya exista ese email registrado.
+      throw new Error('Ya existe un usuario con ese email');
+    }
+
     const hashedPassword = await bcrypt.hash(body.password, 10); // Aquí se cifra, para que a la hora de hacer el login compare bien.
     const newUser = this.usersRepository.create({
       email: body.email,

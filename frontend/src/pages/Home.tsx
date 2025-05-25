@@ -22,6 +22,9 @@ function Home() {
   }, []);
 
   const logout = () => {
+    const confirmed = window.confirm('¿Estás seguro de que quieres cerrar sesión?');
+  if (!confirmed) return;
+  
     localStorage.removeItem('token');
     navigate('/login');
   };

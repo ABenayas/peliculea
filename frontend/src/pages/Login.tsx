@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import api from '../api';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 function Login() {
@@ -53,6 +53,12 @@ function Login() {
         >
           Iniciar sesión
         </button>
+        <p className="text-center text-sm text-gray-400 mt-4">
+          ¿No tienes cuenta?{' '}
+          <Link to="/register" className="text-blue-400 underline hover:text-blue-200">
+            Regístrate aquí
+          </Link>
+        </p>
       </form>
     </div>
   );

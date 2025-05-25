@@ -36,7 +36,7 @@ export class UserMoviesService {
       await this.movieRepo.save(movie);
     }
 
-    // 🔧 Comprobación de duplicado general (en cualquier lista del user)
+    // Comprobación de duplicado general (en cualquier lista del user)
     const existing = await this.userMovieRepo.findOne({
       where: {
         user: { id: user.id },

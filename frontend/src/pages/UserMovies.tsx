@@ -20,11 +20,14 @@ function UserMovies() {
   }, [status]);
 
   async function updateStatus(userMovieId: number, newStatus: 'pendiente' | 'vista') {
+    const confirmed = window.confirm('¿Estás seguro de que quieres añadirla a vistas?');
+    if (!confirmed) return;
+
     try {
       await api.put(`/user-movies/${userMovieId}/status`, { status: newStatus });
       setMovies((prev) =>
         newStatus === 'vista'
-          ? prev.filter((m) => m.id !== userMovieId) // Eliminar de "pendientes" visualmente
+          ? prev.filter((m) => m.id !== userMovieId) // Eliminar de "pendientes" visualmente.
           : prev.map((m) => (m.id === userMovieId ? { ...m, status: newStatus } : m))
       );
     } catch (err) {
