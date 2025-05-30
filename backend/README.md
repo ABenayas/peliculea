@@ -28,36 +28,36 @@ cp .env.example .env
 
 Este script:
 
-- Borra la base de datos y migraciones previas
-- Compila el backend con `tsc`
-- Genera y ejecuta la migración inicial
+- Borra la base de datos y migraciones previas.
+- Compila el backend con `tsc`.
+- Genera y ejecuta la migración inicial.
 - Deja el backend funcionando en `http://localhost:3000`
 - Adminer disponible en `http://localhost:8080`
-- Inicia el frontend
+- Inicia el frontend.
 
 ---
 
 ## Comandos útiles
 
 ```bash
-npm run build              # Compila todo con TSC
-npm run start:dev          # Modo desarrollo
-npm run test               # Lanza los tests
-npm run migration:generate # Genera migración tras cambios en entidades
-npm run migration:run      # Aplica migraciones pendientes
+npm run build              # Compila todo con TSC.
+npm run start:dev          # Modo desarrollo.
+npm run test               # Lanza los tests.
+npm run migration:generate # Genera migración tras cambios en entidades.
+npm run migration:run      # Aplica migraciones pendientes.
 ```
 
 ---
 
-## 🗃️ Estructura
+## Estructura
 
 ```
 src/
-├── users/
 ├── auth/
+├── migrations/
 ├── movies/
 ├── user-movies/
-├── migrations/
+├── users/
 ```
 
 ---
@@ -71,14 +71,19 @@ src/
 
 ---
 
-## Estado actual
+## Colección de Postman
 
-- [x] Backend dockerizado
-- [x] `.env` funcionando
-- [x] Reset completo con `reset.sh`
-- [x] Migraciones funcionando
-- [x] Adminer activo
-- [x] Listo para entrega o despliegue
+Se incluye una colección de Postman exportada en el archivo [`postman-collection.json`](./postman-collection.json), que permite probar todos los endpoints implementados en la API REST del backend de forma rápida y sencilla.
+
+### Cómo usarla
+
+1. Abre Postman.
+2. Haz clic en **"Import"**.
+3. Selecciona el archivo `postman-collection.json`.
+4. Asegúrate de tener configurado el **token JWT** en los headers si estás probando rutas protegidas.
+   - Puedes añadirlo como variable global o directamente en la pestaña "Authorization".
+
+> Requiere que el backend esté corriendo en `http://localhost:3000`.
 
 ---
 

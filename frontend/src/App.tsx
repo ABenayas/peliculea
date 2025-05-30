@@ -7,6 +7,7 @@ import Movies from './pages/Movies';
 import UserMovies from './pages/UserMovies';
 import PrivateRoute from './components/PrivateRoute';
 
+// Se recurre a documentación oficial para generar las rutas con React Router. (React Router, s.f.)
 function App() {
   return (
     <Routes>

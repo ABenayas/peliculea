@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { UserMovie } from '../user-movies/user-movie.entity';
 
+// Se recurre a documentación oficial para crear esta entidad, sobre todo la relación (TypeORM, s.f.)
 @Entity()
 export class Movie {
   @PrimaryGeneratedColumn()

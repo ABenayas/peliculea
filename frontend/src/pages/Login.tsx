@@ -3,6 +3,8 @@ import api from '../api';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
+// Ya que, como autor de este proyeto, nunca se había tenido relación con frontend, se consulta a ChatGPT sobre esta primera vista para hacer uso de ella como plantilla para las restantes. (ChatGPT, s.f.)
+// Para el estilo de las vistas se acude a documentación oficial de Tailwind CSS. (Tailwind CSS, s.f.)
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -11,8 +13,8 @@ function Login() {
   const login = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await api.post('/auth/login', { email, password });
-      localStorage.setItem('token', res.data.access_token);
+      const res = await api.post('/auth/login', { email, password }); // El token es enviado por auth.service.ts cuando se hace login (método login)
+      localStorage.setItem('token', res.data.access_token); // El token se guarda en localStorage, queda guardado localmente en el navegador hasta que el usuario cierre sesión.
       toast.success('Login correcto');
       navigate('/');
     } catch (err: any) {

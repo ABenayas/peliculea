@@ -1,5 +1,6 @@
 import { Movie } from './movie.entity';
 
+// Se recurre a la documentación oficial para la realización de tests, dos en total, pertenecientes al backend. (NestJS, s.f.)
 describe('Movie entity', () => {
   it('should create a movie with the correct properties', () => {
     const movie = new Movie();

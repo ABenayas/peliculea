@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-const api = axios.create({
+const api = axios.create({ // Creamos una instancia de axios.
   baseURL: 'http://localhost:3000',
 });
 
 api.interceptors.request.use((config) => { // Añade el token automáticamente, si existe, a todas las peticiones.
   const token = localStorage.getItem('token'); // Coge el token automáticamente de localStorage.
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.Authorization = `Bearer ${token}`; // Usamos un interceptor para añadir el token automáticamente a cada petición.
   }
   return config;
 });

@@ -29,33 +29,17 @@ La app estará disponible en: [http://localhost:5173](http://localhost:5173)
 - Navegación protegida y fluida entre páginas.
 - Diseño consistente: las tarjetas de películas tienen el mismo alto y el botón siempre alineado abajo para evitar asimetrías.
 
-## Estructura
+## Estructura principal
 
 ```
 frontend/
 ├── src/
-│   ├── pages/           # Vistas principales (Home, Login, Movies, MovieDetails, UserMovies)
 │   ├── components/      # Componentes reutilizables
 │   ├── hooks/           # Hooks personalizados
+│   ├── pages/           # Vistas principales (Home, Login, Movies, MovieDetails, UserMovies y Register)
 │   ├── api.ts           # Configuración Axios
-│   ├── main.tsx         # Punto de entrada
-│   └── App.tsx          # Definición de rutas
-```
-
-## Variables de entorno
-
-Crea un archivo `.env` en la raíz de `frontend/` con el siguiente contenido:
-
-```env
-VITE_API_URL=http://localhost:3000
-```
-
-Y asegúrate de que `api.ts` lo use así:
-
-```ts
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-});
+│   ├── App.tsx          # Definición de rutas
+│   └── main.tsx         # Punto de entrada
 ```
 
 ## Autor

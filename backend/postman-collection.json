@@ -1,0 +1,506 @@
+{
+	"info": {
+		"_postman_id": "e0c1f48b-86d7-4bf9-a822-d71c6b1ba270",
+		"name": "nestjs-postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42897668"
+	},
+	"item": [
+		{
+			"name": "peliculea",
+			"item": [
+				{
+					"name": "user",
+					"item": [
+						{
+							"name": "insert user",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"lulo@peliculea.com\",\r\n  \"password\": \"123456\",\r\n  \"name\": \"Hamfri\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all users",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete user",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/6",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get byid user",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"lulo@peliculea.com\",\r\n  \"password\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "profile",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoibHVsb0BwZWxpY3VsZWEuY29tIiwibmFtZSI6IkhhbWZyaSIsImlhdCI6MTc0NzM0MzMwNywiZXhwIjoxNzQ3NDI5NzA3fQ.dgUD6joNPDRNsyLlBGlv_wrBa7reNHxOflgxJQ-pO9g",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/auth/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "movies",
+					"item": [
+						{
+							"name": "get movies backend",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhdWQiOiIxYWM1YzViMjcyZWYyMmI5YjIzOTFjY2EzNmZiNzlhMyIsIm5iZiI6MTc0NDE4MTI4Mi4wNDE5OTk4LCJzdWIiOiI2N2Y2MTgyMjdiNDNiZGNlMjBhZGI0NWMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/movies/search?query=inception",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"movies",
+										"search"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "inception"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get movies backend id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhdWQiOiIxYWM1YzViMjcyZWYyMmI5YjIzOTFjY2EzNmZiNzlhMyIsIm5iZiI6MTc0NDE4MTI4Mi4wNDE5OTk4LCJzdWIiOiI2N2Y2MTgyMjdiNDNiZGNlMjBhZGI0NWMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/movies/27205",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"movies",
+										"27205"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get movies API",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "1ac5c5b272ef22b9b2391cca36fb79a3",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "api_key",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "query",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.themoviedb.org/3/search/movie?query=inception",
+									"protocol": "https",
+									"host": [
+										"api",
+										"themoviedb",
+										"org"
+									],
+									"path": [
+										"3",
+										"search",
+										"movie"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "inception"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "user-movies",
+					"item": [
+						{
+							"name": "dto",
+							"item": [
+								{
+									"name": "insert movies byid user",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"tmdbId\": 27205,\r\n  \"title\": \"Inception\",\r\n  \"status\": \"vista\",\r\n  \"rating\": 9,\r\n  \"notes\": \"Peliculón, la mejor de Nolan\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/user-movies/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"user-movies",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "patch rating & notes",
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"rating\": 7\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/user-movies/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"user-movies",
+												"1"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "insert movies byid user",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"tmdbId\": 27205,\r\n  \"title\": \"Inception\",\r\n  \"poster_path\": \"/ruta.jpg\",\r\n  \"release_date\": \"2010-07-16\",\r\n  \"overview\": \"Dom Cobb es un ladrón...\",\r\n  \"status\": \"pendiente\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/user-movies/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"user-movies",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all movies byid user",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/user-movies/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"user-movies",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "change status byid user-movies",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"status\": \"vista\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/user-movies/1/status",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"user-movies",
+										"1",
+										"status"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete movie byid user-movies",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/user-movies/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"user-movies",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "patch rating & notes",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"rating\": 8,\r\n  \"notes\": \"La volví a ver y me flipó más\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/user-movies/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"user-movies",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
