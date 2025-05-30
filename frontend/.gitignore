@@ -1,24 +1,33 @@
-# Logs
-logs
+# Archivos de registro (logs).
 *.log
+logs/
+dev.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# # Módulos de Node.js
+node_modules/
+
+# Archivos generados tras compilar/build
+dist/
+dist-ssr/
+
+# Archivos locales de configuración de Vite.
 *.local
 
-# Editor directories and files
-.vscode/*
+# Configuraciones de editores/IDEs
+.vscode/
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Información de compilación de TypeScript.
+*.tsbuildinfo

@@ -2,10 +2,12 @@ import { Routes, Route } from 'react-router-dom';
 import MovieDetails from './pages/MovieDetails';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import Movies from './pages/Movies';
 import UserMovies from './pages/UserMovies';
 import PrivateRoute from './components/PrivateRoute';
 
+// Se recurre a documentación oficial para generar las rutas con React Router. (React Router, s.f.)
 function App() {
   return (
     <Routes>
@@ -42,6 +44,7 @@ function App() {
         }
       />
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
     </Routes>
   );
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api';
 
+// Se recurre a la documentación oficial de React para el uso hooks, rutas, manejo de formularios y componentes reutilizables. (React, s.f.)
 export default function useCurrentUser() {
   const [user, setUser] = useState<any>(null);
   const navigate = useNavigate();

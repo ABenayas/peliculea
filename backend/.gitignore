@@ -1,9 +1,10 @@
-# compiled output
+# Salida compilada.
 /dist
 /node_modules
 /build
+/frontend/dist/
 
-# Logs
+# Archivos de registro (logs).
 logs
 *.log
 npm-debug.log*
@@ -12,14 +13,14 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
-# OS
+# Archivos del sistema operativo (OS).
 .DS_Store
 
-# Tests
+# Archivos de pruebas (tests).
 /coverage
 /.nyc_output
 
-# IDEs and editors
+# Archivos y carpetas de editores e IDEs
 /.idea
 .project
 .classpath
@@ -28,31 +29,31 @@ lerna-debug.log*
 .settings/
 *.sublime-workspace
 
-# IDE - VSCode
+# Configuración específica de Visual Studio Code.
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# dotenv environment variable files
+# Archivos de variables de entorno (.env)
 .env
 .env.development.local
 .env.test.local
 .env.production.local
-.env.local
+.env.*.local
 
-# temp directory
+# Directorios temporales.
 .temp
 .tmp
 
-# Runtime data
+# Datos generados en tiempo de ejecución.
 pids
 *.pid
 *.seed
 *.pid.lock
 
-# Diagnostic reports (https://nodejs.org/api/report.html)
+# Informes de diagnóstico de Node.js (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # Carpeta local de datos de postgres (creada por Docker). Suele dar problemas con los permisos.

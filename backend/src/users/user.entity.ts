@@ -8,12 +8,13 @@ import {
 import { OneToMany } from 'typeorm';
 import { UserMovie } from '../user-movies/user-movie.entity';
 
+// Se recurre a documentación oficial para crear esta entidad, sobre todo la relación (TypeORM, s.f.)
 @Entity() // Usamos el decorador @Entity() para indicar que esta clase será una tabla en la base de datos, una entidad.
 export class User {
   @PrimaryGeneratedColumn()
   id: number; // Con @PrimaryGeneratedColumn() le decimos a TypeOrm que es clave primaria y que el valor será generado automáticamente (autoincremental). Sería lo mismo que "id SERIAL PRIMARY KEY".
 
-  @Column({ unique: true }) // El VARCHAR se genera con 255 caracteres por defecto, no hace falta indicarlo aquí.
+  @Column({ unique: true }) // El VARCHAR se genera con 255 caracteres por defecto, no hace falta indicarlo aquí. Este valor debe ser único para evitar duplicados.
   email: string; // @Column() marca esta propiedad como una columna en la tabla de base de datos. En este caso, además especificamos que el email debe ser único.
 
   @Column()

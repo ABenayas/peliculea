@@ -22,19 +22,27 @@ function MovieDetails() {
   if (!movie) return <div className="p-6 text-white">Cargando detalles...</div>;
 
   return (
-    <div className="p-6 text-white bg-gray-900 min-h-screen">
-      <div className="flex flex-col md:flex-row gap-6">
+    <div
+      className="relative min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-6"
+      style={{ backgroundImage: "url('/images/avatar-bg.jpg')" }}
+    >
+      <div className="absolute inset-0 bg-black bg-opacity-70"></div>
+
+      <div className="relative z-10 max-w-4xl bg-gray-800 bg-opacity-90 rounded-lg shadow-lg text-white p-6 md:flex md:gap-6">
         <img
           src={`https://image.tmdb.org/t/p/w300${movie.posterPath}`}
           alt={movie.title}
-          className="rounded"
+          className="rounded mb-4 md:mb-0"
         />
         <div>
           <h1 className="text-3xl font-bold mb-2">{movie.title}</h1>
-          <p className="text-sm text-gray-400 mb-2">🎬 {movie.releaseDate}</p>
+          <p className="text-sm text-gray-400 mb-4">{movie.releaseDate}</p>
           <p className="mb-4">{movie.overview}</p>
           <p><strong>🕒 Duración:</strong> {movie.runtime} min</p>
           <p><strong>🎬 Director:</strong> {movie.director}</p>
+          <p><strong>🌍 País:</strong> {movie.country || 'Desconocido'}</p>
+          <p><strong>🎞️ Género:</strong> {movie.genres || 'Sin género'}</p>
+          <p><strong>🎭 Actores:</strong> {movie.actors?.join(', ') || 'No disponibles'}</p>
         </div>
       </div>
     </div>
@@ -42,4 +50,5 @@ function MovieDetails() {
 }
 
 export default MovieDetails;
+
 

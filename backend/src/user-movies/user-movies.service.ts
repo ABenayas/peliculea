@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException  } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException  } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserMovie } from './user-movie.entity';
@@ -17,38 +17,46 @@ export class UserMoviesService {
     private movieRepo: Repository<Movie>,
   ) {}
 
-  // Añade una película a la lista del usuario. Si la película no existe en nuestra base, la creamos.
   async addMovieToList(
     user: User,
-    movieData: UserMoviesDto, // Este apartado, el movieData, se cambia al crear el DTO, está llamando a todo lo que hay en el DTO, antes lo tenía así: {tmdbId: number; title: string; posterPath?: string; releaseDate?: string; overview?: string; status?: 'vista' | 'pendiente'; rating?: number;?: string;}
+    movieData: UserMoviesDto,
   ): Promise<UserMovie> {
-    // 1. Buscar si ya existe una película con ese tmdbId.
     let movie = await this.movieRepo.findOne({
       where: { tmdbId: movieData.tmdbId },
     });
 
-    // 2. Si no existe, la creamos con los campos que nos interesan.
     if (!movie) {
       movie = this.movieRepo.create({
         tmdbId: movieData.tmdbId,
         title: movieData.title,
         overview: movieData.overview,
-        posterPath: movieData.posterPath, // camelCase porque así se indica en la entidad.
+        posterPath: movieData.posterPath,
         releaseDate: movieData.releaseDate,
       });
       await this.movieRepo.save(movie);
     }
 
-    // 3. Creamos la relación con el usuario en la tabla intermedia.
+    // Comprobación de duplicado general (en cualquier lista del user)
+    const existing = await this.userMovieRepo.findOne({
+      where: {
+        user: { id: user.id },
+        movie: { id: movie.id },
+      },
+      relations: ['user', 'movie'],
+    });
+
+    if (existing) {
+      throw new BadRequestException('La película ya está en tus listas');
+    }
+
     const newEntry = this.userMovieRepo.create({
       user,
       movie,
-      status: movieData.status || 'pendiente', // Si no se especifica, lo dejamos como "pendiente" por defecto.
-      rating: movieData.rating, // Leemos estos datos del movieData para retornarlos.
+      status: movieData.status || 'pendiente',
+      rating: movieData.rating,
       notes: movieData.notes,
     });
 
-    // 4. Guardamos la relación en la base de datos.
     return await this.userMovieRepo.save(newEntry);
   }
 

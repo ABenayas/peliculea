@@ -8,6 +8,7 @@ import {
   import { User } from '../users/user.entity';
   import { Movie } from '../movies/movie.entity';
   
+  // Se recurre a documentación oficial para crear esta entidad, sobre todo la relación (TypeORM, s.f.)
   @Entity()
   export class UserMovie {
     @PrimaryGeneratedColumn()

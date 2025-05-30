@@ -1,9 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
+import './users/user.entity';
+import './movies/movie.entity';
+import './user-movies/user-movie.entity';
 import * as dotenv from 'dotenv'; // main es el punto de entrada del proyecto, así que, cargo ya .env aquí.
-dotenv.config();
 
+dotenv.config();
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

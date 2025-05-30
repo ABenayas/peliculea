@@ -1,4 +1,15 @@
-import { Controller, Post, Body, Get, Param, Delete, Put, Patch, Req, UseGuards } from '@nestjs/common';
+import { 
+  Controller, 
+  Post, 
+  Body, 
+  Get, 
+  Param, 
+  Delete, 
+  Put, 
+  Patch, 
+  Req, 
+  UseGuards 
+} from '@nestjs/common';
 import { UserMoviesService } from './user-movies.service';
 import { UsersService } from '../users/users.service';
 import { UserMoviesDto } from './dto/user-movies.dto';
@@ -28,9 +39,9 @@ export class UserMoviesController {
   }
 
   @UseGuards(AuthGuard('jwt')) 
-  @Get('me')
+  @Get('me') // Así devuelve las películas de ese usuario, y saca su id del token JWT (no de la URL). Evitamos tener que pasar el userId como parámetro (por ejemplo /user-movies/1), lo cual se podría manipular fácilmente.
   getMyMovies(@Req() req: any) { 
-    return this.userMoviesService.getUserMovies(req.user.id);
+    return this.userMoviesService.getUserMovies(req.user.id); // Aquí se accede al id del usuario con req.user.sub.
   }
 
   @UseGuards(AuthGuard('jwt')) // Protege esta ruta con AuthGuard.
